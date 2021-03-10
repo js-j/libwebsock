@@ -265,6 +265,7 @@ void libwebsock_shutdown(libwebsock_client_state *state) {
 		state->onclose(state);
 	}
 	bufferevent_free(state->bev);
+	state->bev=NULL;
 	//schedule cleanup.
 	ev = event_new(ctx->base, -1, 0, libwebsock_post_shutdown_cleanup,
 			(void *) state);
